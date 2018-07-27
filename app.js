@@ -37,6 +37,10 @@ app.get("/", function(req, res) {
   });
 });
 
+app.get("/healthz", function(req, res) {
+    res.sendStatus(200);
+});
+
 /*
 app.post('/recept/add', function(req, res) {
   var newUser = {

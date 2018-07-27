@@ -1,5 +1,5 @@
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var mongodb_connection_string = 'receptApp';
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
   mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL;

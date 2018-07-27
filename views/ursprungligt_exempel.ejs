@@ -1,0 +1,19 @@
+<% include partials/header %>
+  <h1><%=title%></h1>
+  <p>jorååå</p>
+  <ul>
+  <% users.forEach(function(user){ %>
+      <li>
+        <%= user.name %> + <%= user.email %> + <%= user._id %>
+      </li><a href="#" class="deleteUser" data-id="<%= user._id %>">Delete</a>
+  <% }) %>
+  </ul>
+  <h3>add user</h3>
+  <form method="POST" action="/users/add">
+    <label>Name</label>
+    <input type="text" name="name"><br/>
+    <label>Email</label>
+    <input type="text" name="email"><br/>
+    <input type="submit" value="Submit">
+  </form>
+<% include partials/footer %>

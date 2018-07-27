@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+* {margin:0px;padding:0px;border:0px;font-family:'Raleway';outline:0px solid pink;}
+body {background-color:#f6f1d1;}
+p {display:inline-block;}
+footer {text-align: center;background-color:#90999c;padding:200px;margin-top:100px;color:#f6f1d1;}
+header {
+  height:200px;
+  width:100%;
+  background-color: #0B2027;
+  position:relative;
+}
+nav {
+  margin-left:20%;
+  margin-right:20%;
+  color:white;
+}
+nav li {
+  float:right;
+  font-size:1.5rem;
+  display:inline-block;
+  padding-right: 30px;
+  line-height: 200px;
+}
+.button {
+  position:relative;
+  float:left;
+  margin-top:60px;
+  height:80px;
+  border-radius: 50%;
+  background-color: #f6f1d1;
+  width:80px;
+  text-align: center;
+  line-height:80px;
+  color:#0B2027;
+  font-size:3rem;
+  font-weight: 500;
+  z-index:100;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #e0dcbe;
+}
+#nytt-recept {
+  position:absolute;
+  top:50%;
+  padding-left:50px;
+  padding-right:10px;
+  font-size:1.5rem;
+  height:80px;
+  width:500px;
+  margin-left:-40px;
+  transform:translate(0%, -50%);
+  z-index:1;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+.recipe-outer {
+  position:relative;
+  background-color: #f6f1d1;
+  width:100%;
+  min-height:20px;
+}
+.recipe-inner {
+  position:;
+  padding-top:50px;
+  padding-bottom:50px;
+  margin-left:20%;
+  margin-right:20%;
+  padding-top:50px;
+  border-bottom:1px solid white;
+}
+.recipe-left-part {
+  width:50%;
+  float:left;
+}
+.recipe-right-part {
+  width:50%;
+  float:left;
+}
+.recipe-inner ul {
+  padding:10px 0px 10px 0px;
+}
+.recipe-inner li {
+  display:inline-block;
+  background-color:#40798c;
+  color:white;
+  margin-bottom:5px;
+  padding:5px 8px 5px 8px;
+  border-radius:3px;
+}
+.recipe-inner li:nth-last-child(1) {
+  background-color:#294e5a;
+}
+.recipe-inner li:nth-last-child(1):hover {
+  background-color:#2f5966;
+}
+.recipe-inner li:hover {
+  background-color:#518596;
+  cursor: pointer;
+}
+.clearfloat {
+  clear:both;
+}
+.hidden {
+  display:none;
+}
+.recipe-name {
+  display:inline-block;
+}
+.recipe-name::after{
+  position: relative;
+  content:'✘';
+  margin-left:10px;
+  display:inline-block;
+  color:lightgray;
+  font-size:1rem;
+  bottom:0.3rem;
+}
+.recipe-name:hover::after {
+  color:red;
+}
+.recipe-name:hover {
+  cursor: pointer;
+  color:darkgray;
+}
+.recipe-description::after {
+  content: '✎';
+  color:lightgray;
+  margin-left:10px;
+}
+.recipe-description:hover::after {
+  color:black;
+}
+.recipe-description:hover {
+  color:darkgray;
+  cursor: pointer;
+}
+.description-textarea {
+  width:30vw;
+  height:85px;
+  padding:10px;
+}
+.ingredient-input {
+  height:1rem;
+  background-color:lightgray;
+  color:black;
+  margin-left:10px;
+  display:;
+}

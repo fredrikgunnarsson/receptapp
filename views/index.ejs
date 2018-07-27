@@ -1,0 +1,37 @@
+<% include partials/header %>
+
+<header>
+  <nav>
+    <div class="button">+</div>
+    <input type="text" id="nytt-recept">
+    <ul>
+      <li>SLOTH 🍸🍔</li>
+    </ul>
+
+  </nav>
+</header>
+
+<div class="recipe-outer">
+
+  <% recept.forEach(function(recept){ %>
+  <div class="recipe-inner">
+    <div class="recipe-left-part">
+      <h1 class="recipe-name" data-id=<%= recept._id%>>
+        <%= recept.name %></h1>
+      <ul>
+        <% recept.ingredients.forEach((i) => { if (i.length>0) { %>
+        <li class="ingredient-box"><%= i %></li>
+        <% } }) %>
+        <li class="add-ingredient">+ <span style="font-size:0.8rem;">🍗🐥</span><input type="text" class="ingredient-input hidden"></li>
+      </ul>
+    </div>
+    <div class="recipe-right-part">
+      <p class="recipe-description"><%= recept.description %></p>
+    </div>
+    <div class="clearfloat"></div>
+  </div>
+  <% }) %>
+</div>
+
+
+<% include partials/footer %>

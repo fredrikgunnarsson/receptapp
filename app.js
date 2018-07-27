@@ -1,3 +1,7 @@
+console.log("test av mongodb variabel");
+console.log(OPENSHIFT_MONGODB_DB_URL);
+console.log("slut test");
+
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var mongodb_connection_string = 'receptApp';
@@ -13,6 +17,9 @@ var db = mongojs(mongodb_connection_string, ['recept']);
 var ObjectId = mongojs.ObjectId;
 
 var app = express();
+
+
+
 
 
 

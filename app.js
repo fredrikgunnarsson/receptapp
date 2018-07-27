@@ -1,5 +1,5 @@
 console.log("test av mongodb variabel");
-console.log(OPENSHIFT_MONGODB_DB_URL);
+process.env.OPENSHIFT_MONGODB_DB_URL ? console.log(process.env.OPENSHIFT_MONGODB_DB_URL) : console.log("...finns ej...");
 console.log("slut test");
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;

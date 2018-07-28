@@ -1,10 +1,11 @@
 console.log("test av mongodb variabel");
-process.env.OPENSHIFT_MONGODB_DB_URL ? console.log(process.env.OPENSHIFT_MONGODB_DB_URL) : console.log("...finns ej...");
+process.env.MONGODB_DB_PORT ? console.log(process.env.MONGODB_DB_PORT) : console.log("...finns ej...");
 console.log("slut test");
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var mongodb_connection_string = 'receptApp';
+var mongodb_connection_string = 'mongodb://admin:TXQJcXd7s4qoo1aa@172.30.99.211:27017/receptApp';
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
   mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL;
 }
@@ -14,13 +15,10 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var mongojs = require('mongojs');
 var db = mongojs(mongodb_connection_string, ['recept']);
+// var db = mongojs('172.30.212.133:27017', ['recept']);
 var ObjectId = mongojs.ObjectId;
 
 var app = express();
-
-
-
-
 
 
 // View engine

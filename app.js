@@ -1,15 +1,8 @@
-console.log("test av mongodb variabel");
-process.env.MONGODB_DB_PORT ? console.log(process.env.MONGODB_DB_PORT) : console.log("...finns ej...");
-console.log("slut test");
-
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var mongodb_connection_string = 'receptApp';
-var mongodb_connection_string = 'admin:TXQJcXd7s4qoo1aa@172.30.99.211:27017/receptApp';
-if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL;
-}
 
+var mongodb_connection_string = 'admincontrol:xyn3!JUJJ@ds213832.mlab.com:13832/receptapp';
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -20,30 +13,31 @@ var ObjectId = mongojs.ObjectId;
 
 var app = express();
 
-
 // View engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: false,
 }));
 
 // Set static path
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get("/", function(req, res) {
-  db.recept.find().sort({name: 1}, function(err, docs) {
+app.get('/', function (req, res) {
+  db.recept.find().sort({
+    name: 1,
+  }, function (err, docs) {
     res.render('index', {
-      title:'En titel från servern',
-      recept: docs
+      title: 'En titel från servern',
+      recept: docs,
     });
   });
 });
 
-app.get("/healthz", function(req, res) {
-    res.sendStatus(200);
+app.get('/healthz', function (req, res) {
+  res.sendStatus(200);
 });
 
 /*
@@ -61,26 +55,30 @@ app.post('/recept/add', function(req, res) {
 });
 */
 
-app.post('/recept/new/:name', function(req, res) {
+app.post('/recept/new/:name', function (req, res) {
   var newRecipe = {
     name: req.params.name,
     ingredients: [],
-    description: "Describe it!"
-  }
-  db.recept.insert(newRecipe, function(err, result) {
+    description: 'Describe it!',
+  };
+  db.recept.insert(newRecipe, function (err, result) {
     if (err) {
-      log(err)
+      log(err);
     }
+
     res.redirect('/');
-  })
+  });
 });
 
-app.put('/recept/update/description/', function(req, res) {
+app.put('/recept/update/description/', function (req, res) {
   console.log(req.body.id);
-  db.recept.update(
-    { _id: ObjectId(req.body.id) },
-    { $set : { description: req.body.description } }
-  );
+  db.recept.update({
+    _id: ObjectId(req.body.id),
+  }, {
+    $set: {
+      description: req.body.description,
+    },
+  });
   res.redirect('/');
 });
 
@@ -106,36 +104,49 @@ app.put('/recept/update/ingredients/:id', function(req, res) {
   res.redirect('/');
 });
 */
-app.put('/recept/update/ingredients/', function(req, res) {
+app.put('/recept/update/ingredients/', function (req, res) {
   console.log(req.body.id);
   db.recept.update(
-    { _id: ObjectId(req.body.id) },
+    {
+      _id: ObjectId(req.body.id),
+    },
+
     //{ $push : { ingredients: { $each: JSON.parse(req.body.ingredients) } } }
-    { $push : { ingredients: req.body.ingredients } }
+    {
+      $push: {
+        ingredients: req.body.ingredients,
+      },
+    }
   );
   res.redirect('/');
 });
 
-app.put('/recept/remove/ingredients/', function(req, res) {
+app.put('/recept/remove/ingredients/', function (req, res) {
   console.log(req.body.id);
-  db.recept.update(
-    { _id: ObjectId(req.body.id) },
+  db.recept.update({
+      _id: ObjectId(req.body.id),
+    },
+
     //{ $push : { ingredients: { $each: JSON.parse(req.body.ingredients) } } }
-    { $pull : { ingredients: req.body.ingredients } }
+    {
+      $pull: {
+        ingredients: req.body.ingredients,
+      },
+    }
   );
   res.redirect('/');
 });
 
-
-app.delete('/recept/delete/:id', function(req, res) {
+app.delete('/recept/delete/:id', function (req, res) {
   console.log(req.params.id);
   db.recept.remove({
-    _id: ObjectId(req.params.id)
+    _id: ObjectId(req.params.id),
   });
   res.sendStatus(200);
+
   // res.redirect('/');
 });
 
-app.listen(server_port, server_ip_address, function() {
+app.listen(server_port, server_ip_address, function () {
   console.log(`server started on ${server_ip_address},port ${server_port}...`);
-})
+});
